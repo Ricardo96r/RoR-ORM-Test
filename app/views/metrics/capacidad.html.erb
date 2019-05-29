@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col">
+    <h1>Capacidad del software</h1>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col">
+    <%= render 'shared/tiempo_de_respuesta' %>
+    <h3>Código</h3>
+    <hr />
+    <img src="/metrics/capacidad.png" width="400" />
+
+    <h3>Anotaciones</h3>
+    <hr />
+    <p>Para obtener los resultados para la métrica de <strong>capacidad</strong> se tuvo que usar la libreria <code>Benchmark</code> para medir el tiempo que tarda una petición simple al ORM, el tiempo medido es en milisegundos.</p>
+    <p>La petición simple realizada con el Active Record fue traer un estudiante de la base de datos a traves de su ID <code>Students.Find(i);</code> Se repite el proceso <%= @time.length %> veces con <%= @time.length %> estudiantes diferentes.</p>
+    <p>Se puede ver que el Active Record logra terminar todas las tareas encoladas y dependera de la capacidad del computador para realizarlas</p>
+    <h3>Resultados</h3>
+    <hr />
+    <div class="row">
+      <div class="col-xs-6">
+        <h4>Tiempo (ms)</h4>
+
+        <% @time.each_with_index do |t, i| %>
+          <p>
+            <%= i + 1 %> - <%= t %>
+          </p>
+        <% end %>
+      </div>
+      <div class="col-xs-6">
+        <h4>Capacidad</h4>
+        <p><strong>Cantidad de peticiones con éxito: </strong><%= @time.length %></p>
+        <p><strong>Cantidad de peticiones realizadas: </strong><%= @time.length %></p>
+        <p><strong>Tasa: </strong>1</p>
+        <hr />
+        <h4>Tiempo de respuesta</h4>
+        <p><strong>Promedio: </strong><%= @mean %> ms</p>
+        <p><strong>Desviación estandar: </strong><%= @standard_deviation %> ms</p>
+        <p><strong>Error: </strong><%= @error %> ms</p>
+      </div>
+    </div>
+  </div>
+</div>

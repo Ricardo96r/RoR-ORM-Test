@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col">
+    <h1>Utilización de recursos</h1>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col">
+    <%= render 'shared/utilizacion_de_cache' %>
+    <h3>Código</h3>
+    <hr />
+    <img src="/metrics/utilizacion_de_cache.png" width="400" />
+
+    <h3>Anotaciones</h3>
+    <hr />
+    <p>Para obtener los resultados para la métrica de <strong>utilización de cache</strong> se tuvo que usar la libreria <code>Benchmark</code> para medir el tiempo que tarda una peticion simple al ORM, el tiempo medido es en milisegundos.</p>
+    <p>La petición simple realizada con el Active Record fue traer un estudiante de la base de datos a traves de su ID <code>Students.Find(1)</code>. Por lo cual para que funcione el cache se debe de traer el mismo ID del estudiante ya que se buscó con anterioridad y asi no utiliza los recursos de la computadora sin necesidad</p>
+    <p>Se puede observar la cantidad de tiempo de procesamiento que toma la petición del Active Record para ver si fue usada con cache o no</p>
+    <h3>Resultados</h3>
+    <hr />
+    <div class="row">
+      <div class="col-xs-6">
+        <h4>Tiempo (ms)</h4>
+
+        <% @time.each_with_index do |t, i| %>
+          <p>
+            <%= i + 1 %> - <%= t %>
+          </p>
+        <% end %>
+      </div>
+      <div class="col-xs-6">
+        <h4>Utilización de cache</h4>
+        <p><strong>Cantidad de llamadas totales: </strong>100</p>
+        <p><strong>Cantidad de llamadas con cache: </strong>99</p>
+        <p><strong>Cantidad de llamadas sin cache: </strong>1</p>
+        <p><strong>Tasa: </strong>0.99</p>
+        <hr />
+        <h4>Tiempo (ms)</h4>
+        <p><strong>Promedio: </strong><%= @msMean %> ms</p>
+        <p><strong>Desviación estandar: </strong><%= @msDesvest %> ms</p>
+        <p><strong>Error: </strong><%= @msError %> ms</p>
+        <hr />
+      </div>
+    </div>
+  </div>
+</div>

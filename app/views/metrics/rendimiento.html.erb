@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col">
+    <h1>Comportamiento temporal</h1>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col">
+    <%= render 'shared/rendimiento' %>
+    <h3>Código</h3>
+    <hr />
+    <img src="/metrics/rendimiento.png" width="400" />
+
+    <h3>Anotaciones</h3>
+    <hr />
+    <p>Para obtener los resultados para la métrica de <strong>rendimiento</strong> se tuvo que usar la libreria <code>Time</code> para realizar la mayor cantidad de peticiones a una unidad de tiempo, en este caso el tiempo es de 100ms.</p>
+    <p>La peticion simple realizada con el Active Record fue traer un estudiante de la base de datos a traves de su ID <code>Student.Find(i);</code> Se repite el proceso todas las veces necesarias hasta culminar el tiempo, cada ves se busca un estudiante diferente.</p>
+    <h3>Resultados</h3>
+    <hr />
+    <div class="row">
+      <div class="col-xs-6">
+        <h4>Peticiones por cada 100 ms</h4>
+
+        <% @request.each_with_index do |t, i| %>
+          <p>
+            <%= i + 1 %> - <%= t %>
+          </p>
+        <% end %>
+      </div>
+      <div class="col-xs-6">
+        <h4>Rendimiento</h4>
+        <p><strong>Unidad de tiempo: </strong>100 ms</p>
+        <p><strong>Cantidad de pruebas: </strong><%= @request.length %></p>
+        <p><strong>Promedio: </strong><%= @mean %> peticiones</p>
+        <p><strong>Desviación estandar: </strong><%= @standard_deviation %> peticiones</p>
+        <p><strong>Error: </strong><%= @error %> peticiones</p>
+      </div>
+    </div>
+
+  </div>
+</div>

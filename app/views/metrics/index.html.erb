@@ -1,0 +1,73 @@
+<hr />
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron jumbotron-fluid mt-4">
+        <div class="container">
+          <h1>Ruby On Rails ORM Test</h1>
+          <p class="lead">Pruebas realizadas bajos las metricas de la ISO 9126 e ISO/IEC 25010</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h1>Comportamiento temporal</h1>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <%= render 'shared/tiempo_de_respuesta' %>
+      <a href="/metrics/tiempo_de_respuesta" class="btn btn-primary" role="button">Ejecutar Prueba</a>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <%= render 'shared/rendimiento' %>
+      <a href="/metrics/rendimiento" class="btn btn-primary" role="button">Ejecutar Prueba</a>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <h1>Utilización de recursos</h1>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <%= render 'shared/utilizacion_de_memoria' %>
+      <a href="/metrics/utilizacion_de_memoria" class="btn btn-primary" role="button">Ejecutar Prueba</a>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <%= render 'shared/utilizacion_de_cache' %>
+      <a href="/metrics/utilizacion_de_cache" class="btn btn-primary" role="button">Ejecutar Prueba</a>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <h1>Capacidad del software</h1>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <%= render 'shared/capacidad' %>
+      <a href="/metrics/capacidad" class="btn btn-primary" role="button">Ejecutar Prueba</a>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <%= render 'shared/velocidad_bajo_estres' %>
+      <a href="/metrics/velocidad_bajo_estres" class="btn btn-primary" role="button">Ejecutar Prueba</a>
+    </div>
+  </div>
+</div>
