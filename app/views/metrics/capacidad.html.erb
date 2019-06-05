@@ -21,12 +21,18 @@
     <div class="row">
       <div class="col-xs-6">
         <h4>Tiempo (ms)</h4>
-
-        <% @time.each_with_index do |t, i| %>
-          <p>
-            <%= i + 1 %> - <%= t %>
-          </p>
-        <% end %>
+        <table class="table">
+          <tr>
+            <th>#</th>
+            <th>Miliseconds</th>
+          </tr>
+          <% @time.each_with_index do |t, i| %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><%= t %></td>
+            </tr>
+          <% end %>
+        </table>
       </div>
       <div class="col-xs-6">
         <h4>Capacidad</h4>

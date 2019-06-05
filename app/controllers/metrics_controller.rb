@@ -7,15 +7,17 @@ class MetricsController < ApplicationController
 
   def tiempo_de_respuesta
     resultMs = Array.new
+    activateDB()
     100.times do |index|
       benchmark = Benchmark.measure {
         Student.find(index + 1)
       }
-      resultMs.push(benchmark.real * 1000)
+      result = benchmark.real * 1000
+      resultMs.push(result.round(4))
     end
 
-    @mean = resultMs.mean
-    @standard_deviation = resultMs.standard_deviation
+    @mean = resultMs.mean.round(4)
+    @standard_deviation = resultMs.standard_deviation.round(4)
     @error = error(resultMs)
     @time = resultMs
   end
@@ -24,6 +26,7 @@ class MetricsController < ApplicationController
     result = Array.new
 
     100.times do |j|
+      activateDB()
       now = Time.now
       i = 0
       while getMiliseconds(now) <= 100  do
@@ -33,8 +36,8 @@ class MetricsController < ApplicationController
       result.push(i)
     end
 
-    @mean = result.mean
-    @standard_deviation = result.standard_deviation
+    @mean = result.mean.round(4)
+    @standard_deviation = result.standard_deviation.round(4)
     @error = error(result)
     @request = result
   end
@@ -45,11 +48,11 @@ class MetricsController < ApplicationController
       benchmark = Benchmark.measure {
         Student.find(1)
       }
-      resultMs.push(benchmark.real * 1000)
+      resultMs.push((benchmark.real * 1000).round(4))
     end
 
-    @msMean = resultMs.mean
-    @msDesvest = resultMs.standard_deviation
+    @msMean = resultMs.mean.round(4)
+    @msDesvest = resultMs.standard_deviation.round(4)
     @msError = error(resultMs)
     @time = resultMs
   end
@@ -60,11 +63,11 @@ class MetricsController < ApplicationController
       benchmark = Benchmark.measure {
         Student.find(index + 1)
       }
-      resultMs.push(benchmark.real * 1000)
+      resultMs.push((benchmark.real * 1000).round(4))
     end
 
-    @mean = resultMs.mean
-    @standard_deviation = resultMs.standard_deviation
+    @mean = resultMs.mean.round(4)
+    @standard_deviation = resultMs.standard_deviation.round(4)
     @error = error(resultMs)
     @time = resultMs
   end
@@ -78,8 +81,8 @@ class MetricsController < ApplicationController
       result.push(bytes)
     end
 
-    @mean = result.mean
-    @standard_deviation = result.standard_deviation
+    @mean = result.mean.round(4)
+    @standard_deviation = result.standard_deviation.round(4)
     @error = error(result)
     @memory = result
   end
@@ -92,20 +95,26 @@ class MetricsController < ApplicationController
           Student.find((j + 1) + (index * 100))
         end
       }
-      resultMs.push(benchmark.real * 1000)
+      resultMs.push((benchmark.real * 10).round(4))
     end
 
-    @mean = resultMs.mean
-    @standard_deviation = resultMs.standard_deviation
+    @mean = resultMs.mean.round(4)
+    @standard_deviation = resultMs.standard_deviation.round(4)
     @error = error(resultMs)
     @time = resultMs
   end
 
   def error(values)
-    return 3*(values.standard_deviation/Math.sqrt(values.length));
+    result = 3*(values.standard_deviation/Math.sqrt(values.length));
+    return result.round(4)
+  end
+
+  def activateDB()
+    Student.find((10000))
   end
 
   def getMiliseconds(now)
-    return (Time.now - now) * 1000;
+    result = (Time.now - now) * 1000;
+    return result.round(4)
   end
 end

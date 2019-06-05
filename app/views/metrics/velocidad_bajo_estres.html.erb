@@ -15,18 +15,24 @@
     <hr />
     <p>Para obtener los resultados para la métrica de <strong>velocidad bajo estrés</strong> se tuvo que usar la libreria <code>Benchmark</code> para medir el tiempo que tarda una peticion simple al ORM, el tiempo medido es en milisegundos.</p>
     <p>La peticion simple realizada con el Active Record fue traer un estudiante de la base de datos a traves de su ID <code>Students.Find(i);</code> Se repite el proceso 100 veces con 100 estudiantes diferentes.</p>
-    <p>Se repite la prueba 100 veces y cada prueba hace 100 peticiones al Entity Framework.</p>
+    <p>Se repite la prueba 100 veces y cada prueba hace 100 peticiones al Active Record.</p>
     <h3>Resultados</h3>
     <hr />
     <div class="row">
       <div class="col-xs-6">
         <h4>Tiempo (ms)</h4>
-
-        <% @time.each_with_index do |t, i| %>
-          <p>
-            <%= i + 1 %> - <%= t %>
-          </p>
-        <% end %>
+        <table class="table">
+          <tr>
+            <th>#</th>
+            <th>Miliseconds</th>
+          </tr>
+          <% @time.each_with_index do |t, i| %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><%= t %></td>
+            </tr>
+          <% end %>
+        </table>
       </div>
       <div class="col-xs-6">
         <h4>Tiempo de respuesta</h4>

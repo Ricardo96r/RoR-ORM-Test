@@ -20,12 +20,18 @@
     <div class="row">
       <div class="col-xs-6">
         <h4>Peticiones por cada 100 ms</h4>
-
-        <% @request.each_with_index do |t, i| %>
-          <p>
-            <%= i + 1 %> - <%= t %>
-          </p>
-        <% end %>
+        <table class="table">
+          <tr>
+            <th>#</th>
+            <th>Peticiones</th>
+          </tr>
+          <% @request.each_with_index do |t, i| %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><%= t %></td>
+            </tr>
+          <% end %>
+        </table>
       </div>
       <div class="col-xs-6">
         <h4>Rendimiento</h4>
