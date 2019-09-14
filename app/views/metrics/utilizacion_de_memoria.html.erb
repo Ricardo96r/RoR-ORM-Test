@@ -1,0 +1,46 @@
+<div class="row">
+<div class="col">
+  <h1>Utilización de recursos</h1>
+</div>
+</div>
+<hr />
+<div class="row">
+  <div class="col">
+    <%= render 'shared/utilizacion_de_memoria' %>
+    <h3>Código</h3>
+    <hr />
+    <img src="/metrics/utilizacion_de_memoria.png" width="400" />
+
+    <h3>Anotaciones</h3>
+    <hr />
+    <p>Para obtener los resultados para la métrica de <strong>utilización de memoria</strong> se tuvo que usar la libreria de <code>ActiveSupport</code> para transformar el objeto en un json y luego medir la cantidad de memoria usada por la ejecución de una petición en el Active Record.</p>
+    <p>La peticion simple realizada con el Active Record fue traer un estudiante de la base de datos a traves de su ID <code>Student.Find(i);</code> Se repite el proceso 100 veces con 100 estudiantes diferentes.</p>
+    <h3>Resultados</h3>
+    <hr />
+    <div class="row">
+      <div class="col-xs-6">
+        <h4>Memoria (bytes)</h4>
+
+        <table class="table">
+          <tr>
+            <th>#</th>
+            <th>Bytes</th>
+          </tr>
+          <% @memory.each_with_index do |t, i| %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><%= t %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="col-xs-6">
+        <h4>Tiempo de respuesta</h4>
+        <p><strong>Cantidad de pruebas: </strong><%= @memory.length %></p>
+        <p><strong>Promedio: </strong><%= @mean %> bytes</p>
+        <p><strong>Desviación estandar: </strong><%= @standard_deviation %> bytes</p>
+        <p><strong>Error: </strong><%= @error %> bytes</p>
+      </div>
+    </div>
+  </div>
+</div>

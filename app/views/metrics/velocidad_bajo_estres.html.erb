@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col">
+    <h1>Capacidad del software</h1>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col">
+    <%= render 'shared/velocidad_bajo_estres' %>
+    <h3>Código</h3>
+    <hr />
+    <img src="/metrics/velocidad_bajo_estres.png" width="400" />
+
+    <h3>Anotaciones</h3>
+    <hr />
+    <p>Para obtener los resultados para la métrica de <strong>velocidad bajo estrés</strong> se tuvo que usar la libreria <code>Benchmark</code> para medir el tiempo que tarda una peticion simple al ORM, el tiempo medido es en milisegundos.</p>
+    <p>La peticion simple realizada con el Active Record fue traer un estudiante de la base de datos a traves de su ID <code>Students.Find(i);</code> Se repite el proceso 100 veces con 100 estudiantes diferentes.</p>
+    <p>Se repite la prueba 100 veces y cada prueba hace 100 peticiones al Active Record.</p>
+    <h3>Resultados</h3>
+    <hr />
+    <div class="row">
+      <div class="col-xs-6">
+        <h4>Tiempo (ms)</h4>
+        <table class="table">
+          <tr>
+            <th>#</th>
+            <th>Miliseconds</th>
+          </tr>
+          <% @time.each_with_index do |t, i| %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><%= t %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="col-xs-6">
+        <h4>Tiempo de respuesta</h4>
+        <p><strong>Cantidad de pruebas: </strong><%= @time.length %></p>
+        <p><strong>Cantidad de peticiones por prueba: </strong>100</p>
+        <p><strong>Promedio: </strong><%= @mean %> ms</p>
+        <p><strong>Desviación estandar: </strong><%= @standard_deviation %> ms</p>
+        <p><strong>Error: </strong><%= @error %> ms</p>
+      </div>
+    </div>
+  </div>
+</div>

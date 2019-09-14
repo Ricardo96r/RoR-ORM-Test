@@ -52,3 +52,13 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "memory_profiler", "~> 0.9.14"
+
+gem "descriptive_statistics", "~> 2.5"
+
+gem "jquery-rails", "~> 4.3"
+
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+
+gem "coffee-rails", "~> 5.0"
