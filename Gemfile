@@ -63,6 +63,4 @@ gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 gem "coffee-rails", "~> 5.0"
 
-gem "sqlite3", "~> 1.4"
-
 gem "postgresql", "~> 1.0"
