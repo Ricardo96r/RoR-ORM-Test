@@ -127,8 +127,6 @@ GEM
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     pg (1.1.4)
-    postgresql (1.0.0)
-      pg
     public_suffix (4.0.1)
     puma (3.12.1)
     rack (2.0.7)
@@ -237,7 +235,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   memory_profiler (~> 0.9.14)
   mysql2 (>= 0.4.4)
-  postgresql (~> 1.0)
+  pg (~> 1.1)
   puma (~> 3.11)
   rails (~> 6.0.0)
   sass-rails (~> 5)
