@@ -49,6 +49,4 @@ test:
 #
 production:
   <<: *default
-  database: ror6_production
-  username: ror6
-  password: <%= ENV['ROR6_DATABASE_PASSWORD'] %>
+  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
