@@ -62,3 +62,5 @@ gem "jquery-rails", "~> 4.3"
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 gem "coffee-rails", "~> 5.0"
+
+gem "sqlite3", "~> 1.4"
