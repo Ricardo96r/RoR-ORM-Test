@@ -35,7 +35,9 @@
       </div>
       <div class="col-xs-6">
         <h4>Rendimiento</h4>
+        <h5><strong>X = </strong><%= @xresult %></h5>
         <p><strong>Unidad de tiempo: </strong>100 ms</p>
+        <p><strong>Promedio: </strong><%= @mean %> peticiones</p>
         <p><strong>Cantidad de pruebas: </strong><%= @request.length %></p>
         <p><strong>Promedio: </strong><%= @mean %> peticiones</p>
         <p><strong>Desviación estandar: </strong><%= @standard_deviation %> peticiones</p>

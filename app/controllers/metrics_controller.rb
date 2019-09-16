@@ -16,6 +16,7 @@ class MetricsController < ApplicationController
       resultMs.push(result.round(4))
     end
 
+    @xresult = (resultMs.sum / 100).round(4)
     @mean = resultMs.mean.round(4)
     @standard_deviation = resultMs.standard_deviation.round(4)
     @error = error(resultMs)
@@ -36,9 +37,12 @@ class MetricsController < ApplicationController
       result.push(i)
     end
 
+    @xresult = ((result.sum / 0.100)/100).round(4)
     @mean = result.mean.round(4)
     @standard_deviation = result.standard_deviation.round(4)
     @error = error(result)
+    result.each { |key, value| puts value }
+    @result = result
     @request = result
   end
 
@@ -50,6 +54,8 @@ class MetricsController < ApplicationController
       }
       resultMs.push((benchmark.real * 1000).round(4))
     end
+
+
 
     @msMean = resultMs.mean.round(4)
     @msDesvest = resultMs.standard_deviation.round(4)
