@@ -25,27 +25,32 @@
         <table class="table">
           <tr>
             <th>#</th>
-            <th>Miliseconds</th>
+            <th>Tiempo de operacion</th>
+            <th>Tiempo de procesador</th>
           </tr>
           <% @time.each_with_index do |t, i| %>
             <tr>
               <td><%= i + 1 %></td>
               <td><%= t %></td>
+              <td><%= @timeProccesor[i] %></td>
             </tr>
           <% end %>
         </table>
       </div>
       <div class="col-xs-6">
-        <h4>Utilización de cache</h4>
+        <h4>Utilización de media del procesador</h4>
         <p><strong>Cantidad de llamadas totales: </strong>100</p>
-        <p><strong>Cantidad de llamadas con cache: </strong>99</p>
-        <p><strong>Cantidad de llamadas sin cache: </strong>1</p>
-        <p><strong>Tasa: </strong>0.99</p>
+        <p><strong>X = </strong> <%= @xResult %></p>
         <hr />
-        <h4>Tiempo (ms)</h4>
+        <h4>Tiempo de operacion (ms)</h4>
         <p><strong>Promedio: </strong><%= @msMean %> ms</p>
         <p><strong>Desviación estandar: </strong><%= @msDesvest %> ms</p>
         <p><strong>Error: </strong><%= @msError %> ms</p>
+        <hr />
+        <h4>Tiempo de procesador (ms)</h4>
+        <p><strong>Promedio: </strong><%= @ms2Mean %> ms</p>
+        <p><strong>Desviación estandar: </strong><%= @ms2Desvest %> ms</p>
+        <p><strong>Error: </strong><%= @ms2Error %> ms</p>
         <hr />
       </div>
     </div>

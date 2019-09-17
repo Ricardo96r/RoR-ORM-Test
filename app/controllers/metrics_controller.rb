@@ -47,31 +47,51 @@ class MetricsController < ApplicationController
   end
 
   def utilizacion_de_cache
-    resultMs = Array.new
+    resultOperationTime = Array.new
+    resultProccesorTime = Array.new
     100.times do
+      time = 0
       benchmark = Benchmark.measure {
-        Student.find(1)
+        time += (Benchmark.measure {
+          Lesson.find(1)
+        }).real
+        time += (Benchmark.measure {
+          Student.find(1)
+        }).real
+        time += (Benchmark.measure {
+          Teacher.find(1)
+        }).real
       }
-      resultMs.push((benchmark.real * 1000).round(4))
+      resultOperationTime.push((benchmark.real * 1000).round(4))
+      resultProccesorTime.push((time * 1000).round(4))
     end
 
-
-
-    @msMean = resultMs.mean.round(4)
-    @msDesvest = resultMs.standard_deviation.round(4)
-    @msError = error(resultMs)
-    @time = resultMs
+    xResult = 0
+    100.times do |i|
+      xResult  += (resultProccesorTime[i] / resultOperationTime[i])
+    end
+    @xResult = (xResult / 100).round(4)
+    @msMean = resultOperationTime.mean.round(4)
+    @msDesvest = resultOperationTime.standard_deviation.round(4)
+    @msError = error(resultOperationTime)
+    @ms2Mean = resultProccesorTime.mean.round(4)
+    @ms2Desvest = resultProccesorTime.standard_deviation.round(4)
+    @ms2Error = error(resultProccesorTime)
+    @time = resultOperationTime
+    @timeProccesor = resultProccesorTime
   end
 
   def capacidad
     resultMs = Array.new
-    1000.times do |index|
-      benchmark = Benchmark.measure {
-        Student.find(index + 1)
-      }
-      resultMs.push((benchmark.real * 1000).round(4))
-    end
-
+    totalBech = Benchmark.measure {
+      1000.times do |index|
+        benchmark = Benchmark.measure {
+          Student.find(index + 1)
+        }
+        resultMs.push((benchmark.real * 1000).round(4))
+      end
+    }
+    @xResult = ((totalBech.real * 1000) / 1000).round(4)
     @mean = resultMs.mean.round(4)
     @standard_deviation = resultMs.standard_deviation.round(4)
     @error = error(resultMs)

@@ -1,7 +1,7 @@
 require "faker"
 
 data = []
-100.times do
+10000.times do
   data.push({
                 name: Faker::Name.name,
                 lastname: Faker::Name.last_name,
@@ -15,7 +15,7 @@ Teacher.create(data)
 
 data = []
 i = 1
-100.times do
+10000.times do
   data.push({
                 name: Faker::Educator.course_name,
                 teacher_id: i
@@ -25,8 +25,8 @@ end
 
 Lesson.create(data)
 
-100.times do
-  lesson = Lesson.find(Faker::Number.between(from: 1, to: 100))
-  student = Student.find(Faker::Number.between(from: 1, to: 100))
+10000.times do
+  lesson = Lesson.find(Faker::Number.between(from: 1, to: 10000))
+  student = Student.find(Faker::Number.between(from: 1, to: 10000))
   student.lessons << lesson
 end

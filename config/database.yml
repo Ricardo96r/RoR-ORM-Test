@@ -49,4 +49,4 @@ test:
 #
 production:
   adapter: postgresql
-  url: <%= ENV['DATABASE_URL'] %>
+  url: postgres://nwuiuwyasuhxgr:aa7ca36a1cafbeb085658a4745795be0c723d6d3b9a3378df673b6b43f4bcf9e@ec2-54-243-208-234.compute-1.amazonaws.com:5432/d84vbs5s7s8afp
