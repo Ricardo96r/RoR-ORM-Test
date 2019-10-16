@@ -6,16 +6,16 @@
 <hr />
 <div class="row">
   <div class="col">
-    <%= render 'shared/utilizacion_de_cache' %>
+    <%= render 'shared/utilizacion_media_del_procesador' %>
     <h3>Código</h3>
     <hr />
-    <img src="/metrics/utilizacion_de_cache.png" width="400" />
+    <img src="/metrics/utilizacion_media_del_procesador.png" width="400" />
 
     <h3>Anotaciones</h3>
     <hr />
-    <p>Para obtener los resultados para la métrica de <strong>utilización de cache</strong> se tuvo que usar la libreria <code>Benchmark</code> para medir el tiempo que tarda una peticion simple al ORM, el tiempo medido es en milisegundos.</p>
-    <p>La petición simple realizada con el Active Record fue traer un estudiante de la base de datos a traves de su ID <code>Students.Find(1)</code>. Por lo cual para que funcione el cache se debe de traer el mismo ID del estudiante ya que se buscó con anterioridad y asi no utiliza los recursos de la computadora sin necesidad</p>
-    <p>Se puede observar la cantidad de tiempo de procesamiento que toma la petición del Active Record para ver si fue usada con cache o no</p>
+    <p>Para obtener los resultados para la métrica de <strong>Utilizacion media del procesador</strong> se tuvo que usar la libreria <code>Benchmark</code> para medir el tiempo que tarda una peticion al ORM, el tiempo medido es en milisegundos.</p>
+    <p>La petición realizada con el Active Record fue traer un estudiante, un profesor y una clase de la base de datos a traves de su ID. Se media el tiempo por cada peticion al ORM y se sumaban por lo cual es el tiempo de procesador, luego se tomaba el tiempo que toma ejecutar todo y seria el tiempo de operacion.</p>
+    <p>Se puede observar la cantidad de tiempo de procesamiento que toma la petición del Active Record, asi como el tiempo de operacion el cual siempre es mayor que el de procesamiento.</p>
     <h3>Resultados</h3>
     <hr />
     <div class="row">

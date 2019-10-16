@@ -1,7 +1,7 @@
 require "faker"
 
 data = []
-10000.times do
+100000.times do
   data.push({
                 name: Faker::Name.name,
                 lastname: Faker::Name.last_name,
@@ -15,7 +15,7 @@ Teacher.create(data)
 
 data = []
 i = 1
-10000.times do
+100000.times do
   data.push({
                 name: Faker::Educator.course_name,
                 teacher_id: i

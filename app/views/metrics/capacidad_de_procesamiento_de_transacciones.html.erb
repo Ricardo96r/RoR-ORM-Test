@@ -6,15 +6,15 @@
 <hr />
 <div class="row">
   <div class="col">
-    <%= render 'shared/tiempo_de_respuesta' %>
+    <%= render 'shared/capacidad_de_procesamiento_de_transacciones' %>
     <h3>Código</h3>
     <hr />
-    <img src="/metrics/capacidad.png" width="400" />
+    <img src="/metrics/capacidad_de_procesamiento_de_transacciones.png" width="400" />
 
     <h3>Anotaciones</h3>
     <hr />
-    <p>Para obtener los resultados para la métrica de <strong>capacidad</strong> se tuvo que usar la libreria <code>Benchmark</code> para medir el tiempo que tarda una petición simple al ORM, el tiempo medido es en milisegundos.</p>
-    <p>La petición simple realizada con el Active Record fue traer un estudiante de la base de datos a traves de su ID <code>Students.Find(i);</code> Se repite el proceso <%= @time.length %> veces con <%= @time.length %> estudiantes diferentes.</p>
+    <p>Para obtener los resultados para la métrica de <strong>capacidad de procesamiento de transacciones</strong> se tuvo que usar la libreria <code>Benchmark</code> para medir el tiempo que tarda una transacción al ORM, el tiempo medido es en milisegundos.</p>
+    <p>La transacción realizada con el ORM de Active Record fue crear 20 estudiantes, luego se crea un profesor para despues crear una clase que se asigna a los estudiantes y el profesor. Se repite el proceso con <%= @time.length %> observaciones. Se usó la librería de Faker para crear los datos.</p>
     <p>Se puede ver que el Active Record logra terminar todas las tareas encoladas y dependera de la capacidad del computador para realizarlas</p>
     <h3>Resultados</h3>
     <hr />

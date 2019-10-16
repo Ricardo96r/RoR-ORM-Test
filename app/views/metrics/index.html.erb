@@ -5,7 +5,10 @@
       <div class="jumbotron jumbotron-fluid mt-4">
         <div class="container">
           <h1>Ruby On Rails ORM Test</h1>
-          <p class="lead">Pruebas realizadas bajos las metricas de la ISO 9126 e ISO/IEC 25010</p>
+          <p class="lead">Pruebas realizadas bajos las metricas de la <strong>ISO/IEC 25023</strong></p>
+          <p>Ruby On Rails version: <strong><%= Rails::VERSION::STRING %></strong> </p>
+          <p>Ruby version: <strong><%= RUBY_VERSION %></strong></p>
+          <small>OS: <strong><%= @os %></strong></small>
         </div>
       </div>
     </div>
@@ -19,15 +22,15 @@
   <hr />
   <div class="row">
     <div class="col">
-      <%= render 'shared/tiempo_de_respuesta' %>
-      <a href="/metrics/tiempo_de_respuesta" class="btn btn-primary" role="button">Ejecutar Prueba</a>
+      <%= render 'shared/tiempo_medio_de_respuesta' %>
+      <a href="/metrics/tiempo_medio_de_respuesta" class="btn btn-primary" role="button">Ejecutar Prueba</a>
     </div>
   </div>
   <hr />
   <div class="row">
     <div class="col">
-      <%= render 'shared/rendimiento' %>
-      <a href="/metrics/rendimiento" class="btn btn-primary" role="button">Ejecutar Prueba</a>
+      <%= render 'shared/rendimiento_medio' %>
+      <a href="/metrics/rendimiento_medio" class="btn btn-primary" role="button">Ejecutar Prueba</a>
     </div>
   </div>
   <hr />
@@ -39,15 +42,15 @@
   <hr />
   <div class="row">
     <div class="col">
-      <%= render 'shared/utilizacion_de_memoria' %>
-      <a href="/metrics/utilizacion_de_memoria" class="btn btn-primary" role="button">Ejecutar Prueba</a>
+      <%= render 'shared/cantidad_media_de_memoria_utilizada' %>
+      <a href="/metrics/cantidad_media_de_memoria_utilizada" class="btn btn-primary" role="button">Ejecutar Prueba</a>
     </div>
   </div>
   <hr />
   <div class="row">
     <div class="col">
-      <%= render 'shared/utilizacion_de_cache' %>
-      <a href="/metrics/utilizacion_de_cache" class="btn btn-primary" role="button">Ejecutar Prueba</a>
+      <%= render 'shared/utilizacion_media_del_procesador' %>
+      <a href="/metrics/utilizacion_media_del_procesador" class="btn btn-primary" role="button">Ejecutar Prueba</a>
     </div>
   </div>
   <hr />
@@ -59,8 +62,8 @@
   <hr />
   <div class="row">
     <div class="col">
-      <%= render 'shared/capacidad' %>
-      <a href="/metrics/capacidad" class="btn btn-primary" role="button">Ejecutar Prueba</a>
+      <%= render 'shared/capacidad_de_procesamiento_de_transacciones' %>
+      <a href="/metrics/capacidad_de_procesamiento_de_transacciones" class="btn btn-primary" role="button">Ejecutar Prueba</a>
     </div>
   </div>
 </div>

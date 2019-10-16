@@ -1,11 +1,14 @@
 require 'descriptive_statistics'
 require 'memory_profiler'
+require 'os'
+require "faker"
 
 class MetricsController < ApplicationController
   def index
+    @os = OS.report
   end
 
-  def tiempo_de_respuesta
+  def tiempo_medio_de_respuesta
     resultMs = Array.new
     activateDB()
     100.times do |index|
@@ -23,7 +26,7 @@ class MetricsController < ApplicationController
     @time = resultMs
   end
 
-  def rendimiento
+  def rendimiento_medio
     result = Array.new
 
     100.times do |j|
@@ -46,20 +49,21 @@ class MetricsController < ApplicationController
     @request = result
   end
 
-  def utilizacion_de_cache
+  def utilizacion_media_del_procesador
     resultOperationTime = Array.new
     resultProccesorTime = Array.new
-    100.times do
+    activateDB()
+    100.times do |index|
       time = 0
       benchmark = Benchmark.measure {
         time += (Benchmark.measure {
-          Lesson.find(1)
+          Lesson.find(index + 1)
         }).real
         time += (Benchmark.measure {
-          Student.find(1)
+          Student.find(index + 1)
         }).real
         time += (Benchmark.measure {
-          Teacher.find(1)
+          Teacher.find(index + 1)
         }).real
       }
       resultOperationTime.push((benchmark.real * 1000).round(4))
@@ -81,24 +85,51 @@ class MetricsController < ApplicationController
     @timeProccesor = resultProccesorTime
   end
 
-  def capacidad
+  def capacidad_de_procesamiento_de_transacciones
     resultMs = Array.new
-    totalBech = Benchmark.measure {
-      1000.times do |index|
-        benchmark = Benchmark.measure {
-          Student.find(index + 1)
-        }
-        resultMs.push((benchmark.real * 1000).round(4))
+    observations = 100
+
+    observations.times do |index|
+      students = []
+      20.times do |index|
+        students.push({
+            name: Faker::Name.name,
+            lastname: Faker::Name.last_name,
+            birthday: Faker::Date.backward(),
+            address: Faker::Address.full_address
+        })
       end
-    }
-    @xResult = ((totalBech.real * 1000) / 1000).round(4)
+      teacher = {
+          name: Faker::Name.name,
+          lastname: Faker::Name.last_name,
+          birthday: Faker::Date.backward(),
+          address: Faker::Address.full_address
+      }
+      lesson = {
+          name: Faker::Educator.course_name,
+          teacher_id: 0,
+      }
+
+      benchmark = Benchmark.measure {
+        ActiveRecord::Base.transaction do
+          students = Student.create(students)
+          teacher = Teacher.create(teacher)
+          lesson['teacher_id'] = teacher.id
+          lesson = Lesson.create(lesson)
+          lesson.students = students
+        end
+      }
+      resultMs.push((benchmark.real * 1000).round(4))
+    end
+
+    @xResult = resultMs.mean.round(4)
     @mean = resultMs.mean.round(4)
     @standard_deviation = resultMs.standard_deviation.round(4)
     @error = error(resultMs)
     @time = resultMs
   end
 
-  def utilizacion_de_memoria
+  def cantidad_media_de_memoria_utilizada
     result = Array.new
 
     100.times do |i|
