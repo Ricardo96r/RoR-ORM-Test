@@ -11,7 +11,7 @@ class MetricsController < ApplicationController
   def tiempo_medio_de_respuesta
     resultMs = Array.new
     activateDB()
-    100.times do |index|
+    10000.times do |index|
       benchmark = Benchmark.measure {
         Student.find(index + 1)
       }
@@ -19,7 +19,7 @@ class MetricsController < ApplicationController
       resultMs.push(result.round(4))
     end
 
-    @xresult = (resultMs.sum / 100).round(4)
+    @xresult = (resultMs.sum / resultMs.length).round(4)
     @mean = resultMs.mean.round(4)
     @standard_deviation = resultMs.standard_deviation.round(4)
     @error = error(resultMs)
@@ -107,7 +107,6 @@ class MetricsController < ApplicationController
       }
       lesson = {
           name: Faker::Educator.course_name,
-          teacher_id: 0,
       }
 
       benchmark = Benchmark.measure {
@@ -142,23 +141,6 @@ class MetricsController < ApplicationController
     @standard_deviation = result.standard_deviation.round(4)
     @error = error(result)
     @memory = result
-  end
-
-  def velocidad_bajo_estres
-    resultMs = Array.new
-    100.times do |index|
-      benchmark = Benchmark.measure {
-        100.times do |j|
-          Student.find((j + 1) + (index * 100))
-        end
-      }
-      resultMs.push((benchmark.real * 10).round(4))
-    end
-
-    @mean = resultMs.mean.round(4)
-    @standard_deviation = resultMs.standard_deviation.round(4)
-    @error = error(resultMs)
-    @time = resultMs
   end
 
   def error(values)

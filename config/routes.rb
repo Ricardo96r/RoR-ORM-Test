@@ -7,6 +7,5 @@ Rails.application.routes.draw do
   get 'metrics/capacidad_de_procesamiento_de_transacciones'
   get 'metrics/rendimiento_medio'
   get 'metrics/cantidad_media_de_memoria_utilizada'
-  get 'metrics/velocidad_bajo_estres'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
