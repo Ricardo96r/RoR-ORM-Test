@@ -11,7 +11,7 @@ class MetricsController < ApplicationController
   def tiempo_medio_de_respuesta
     resultMs = Array.new
     activateDB()
-    10000.times do |index|
+    100.times do |index|
       benchmark = Benchmark.measure {
         Student.find(index + 1)
       }
@@ -35,7 +35,7 @@ class MetricsController < ApplicationController
       i = 0
       while getMiliseconds(now) <= 100  do
         i +=1
-        Student.find(i + (j * 100))
+        Student.find(i + (j * 1000))
       end
       result.push(i)
     end
@@ -121,7 +121,7 @@ class MetricsController < ApplicationController
       resultMs.push((benchmark.real * 1000).round(4))
     end
 
-    @xResult = resultMs.mean.round(4)
+    @xResult = (observations / resultMs.sum).round(4)
     @mean = resultMs.mean.round(4)
     @standard_deviation = resultMs.standard_deviation.round(4)
     @error = error(resultMs)
